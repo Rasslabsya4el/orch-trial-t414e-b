@@ -1,0 +1,20 @@
+name: load18
+
+# scratch load for #414 live rows 14/6: 18 parallel jobs that each sleep 4 minutes (started by workflow_dispatch)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sleeper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        n: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+    steps:
+      - name: sleep four minutes
+        run: sleep 240
